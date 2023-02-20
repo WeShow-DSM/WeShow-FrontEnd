@@ -6,7 +6,8 @@ import { ThemeProvider } from "styled-components";
 const StyleProvider = ({ children }) => {
   return (
     <ThemeProvider theme={theme}>
-      <GlobalStyle>{children}</GlobalStyle>
+      <GlobalStyle />
+      {children}
     </ThemeProvider>
   );
 };
