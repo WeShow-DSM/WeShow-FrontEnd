@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { LogoImg } from "../../assets/index";
+import { lighten, darken } from "polished";
 
 const Frame = styled.div`
   margin-top: 180px;
@@ -32,6 +33,12 @@ const LogInBox = styled.button`
   color: ${({ theme }) => theme.color.white};
   font-family: ${({ theme }) => theme.font.pretendard};
   cursor: pointer;
+  &:hover {
+    background: ${({ theme }) => lighten(0.1, theme.color.point1)};
+  }
+  &:active {
+    background: ${({ theme }) => darken(0.1, theme.color.point1)};
+  }
 `;
 
 const InfoContainer = styled.div`
