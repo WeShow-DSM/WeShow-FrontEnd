@@ -7,6 +7,7 @@ export const theme = {
     point2: "#1D304D",
     gray50: "#F9FAFB",
     gray100: "#F2F4F7",
+    gray300: "#999999",
     gray600: "#475467",
   },
   font: {
