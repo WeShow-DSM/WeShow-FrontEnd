@@ -98,8 +98,6 @@ const LoginContainer = styled.div`
 
 const LoginWrapper = styled.div`
   width: 483px;
-  height: 545px;
-
   display: flex;
   flex-direction: column;
 `;

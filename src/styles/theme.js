@@ -9,6 +9,7 @@ export const theme = {
     gray100: "#F2F4F7",
     gray300: "#999999",
     gray600: "#475467",
+    red: "#FF0000",
   },
   font: {
     noto: "Noto Sans",
