@@ -2,13 +2,14 @@ import React from "react";
 import styled from "styled-components";
 import { LogoImg } from "../../assets/index";
 import { lighten, darken } from "polished";
+import { Link } from "react-router-dom";
 
 function FirstPage() {
   return (
     <Frame>
       <Logo src={LogoImg} />
       <Title>위대한 쇼핑</Title>
-      <LogInBox>로그인</LogInBox>
+      <LogInBox to="/login">로그인</LogInBox>
 
       <InfoContainer>
         <Info>
@@ -66,9 +67,13 @@ const Title = styled.p`
   color: ${({ theme }) => theme.color.point2};
 `;
 
-const LogInBox = styled.button`
+const LogInBox = styled(Link)`
   width: 600px;
   height: 73px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
   margin-top: 100px;
   background: ${({ theme }) => theme.color.point1};
   border-radius: 40px;
