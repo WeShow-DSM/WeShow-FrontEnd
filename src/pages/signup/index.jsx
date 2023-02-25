@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
-import { LoginBGI, OpenEye, CloseEye } from "../../assets/index";
+import { useState, useEffect } from "react";
+import { LoginBGI, OpenEye, CloseEye } from "../../assets";
 import styled, { css } from "styled-components";
 import { lighten, darken } from "polished";
+import { Link } from "react-router-dom";
 
 function SignUp() {
   const [inputs, setInput] = useState({
@@ -39,18 +40,20 @@ function SignUp() {
     }
   };
 
-  const onSignUp = () => {
+  const onSignUp = (e) => {
     console.log(inputs);
     if (!id || !password || !checkPassword || !nickname) {
       alert("회원정보를 모두 입력해주세요");
+      e.preventDefault();
     } else if (!equalPW) {
       alert("비밀번호가 다릅니다.");
+      e.preventDefault();
     }
   };
 
   return (
     <Frame>
-      <LoginImg src={LoginBGI}></LoginImg>
+      <LoginImg src={LoginBGI} />
       <LoginContainer>
         <LoginWrapper>
           <Title>회원가입</Title>
@@ -130,7 +133,9 @@ function SignUp() {
             />
           </InfoInputWrapper>
 
-          <SignUpBox onClick={onSignUp}>회원가입</SignUpBox>
+          <SignUpBox to="/main" onClick={onSignUp}>
+            회원가입
+          </SignUpBox>
         </LoginWrapper>
       </LoginContainer>
     </Frame>
@@ -165,7 +170,7 @@ const LoginWrapper = styled.div`
 
 const Title = styled.p`
   font-size: 30px;
-  font-family: ${({ theme }) => theme.font.noto};
+  font-family: ${({ theme }) => theme.font.pretendard};
 `;
 
 const Line = styled.hr`
@@ -203,6 +208,8 @@ const InfoInputWrapper = styled.div`
 const InfoInput = styled.input`
   width: 100%;
   padding: 4px 0px 0px 15px;
+  background: ${({ theme }) => theme.color.gray50};
+
   ::placeholder {
     font-size: 16px;
     color: ${({ theme }) => lighten(0.7, theme.color.black)};
@@ -216,7 +223,7 @@ const PasswordImg = styled.img`
   cursor: pointer;
 `;
 
-const SignUpBox = styled.div`
+const SignUpBox = styled(Link)`
   height: 50px;
   margin-top: 40px;
   background: ${({ theme }) => theme.color.point1};
@@ -227,6 +234,7 @@ const SignUpBox = styled.div`
   font-size: 18px;
   color: ${({ theme }) => theme.color.white};
   font-family: ${({ theme }) => theme.font.pretendard};
+  text-decoration: none;
   cursor: pointer;
   &:hover {
     background: ${({ theme }) => lighten(0.1, theme.color.point1)};
