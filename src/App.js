@@ -4,6 +4,7 @@ import StyleProvider from "./styles";
 import FirstPage from "./pages/first";
 import Login from "./pages/login";
 import SignUp from "./pages/signup";
+import Main from "./pages/main";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
           <Route path="/" element={<FirstPage />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
+          <Route path="/main" element={<Main />} />
         </Routes>
       </BrowserRouter>
     </StyleProvider>
