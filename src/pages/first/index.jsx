@@ -1,6 +1,5 @@
-import React from "react";
 import styled from "styled-components";
-import { LogoImg } from "../../assets/index";
+import { LogoImg } from "../../assets";
 import { lighten, darken } from "polished";
 import { Link } from "react-router-dom";
 

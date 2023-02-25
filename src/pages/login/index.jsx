@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import {
   LoginBGI,
   OpenEye,
   CloseEye,
   CheckedBox,
   CheckBox,
-} from "../../assets/index";
+} from "../../assets";
 import styled, { css } from "styled-components";
 import { lighten, darken } from "polished";
 import { Link } from "react-router-dom";
@@ -25,7 +25,7 @@ function Login() {
 
   return (
     <Frame>
-      <LoginImg src={LoginBGI}></LoginImg>
+      <LoginImg src={LoginBGI} />
       <LoginContainer>
         <LoginWrapper>
           <Title>로그인</Title>
@@ -134,6 +134,7 @@ const InfoInputWrapper = styled.div`
 const InfoInput = styled.input`
   width: 100%;
   padding: 4px 0px 0px 15px;
+  background-color: ${({ theme }) => theme.color.gray50};
   ::placeholder {
     font-size: 16px;
     color: ${({ theme }) => lighten(0.7, theme.color.black)};
