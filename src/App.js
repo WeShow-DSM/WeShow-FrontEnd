@@ -5,6 +5,7 @@ import FirstPage from "./pages/first";
 import Login from "./pages/login";
 import SignUp from "./pages/signup";
 import Main from "./pages/main";
+import Detail from "./pages/detailProduct";
 
 function App() {
   return (
