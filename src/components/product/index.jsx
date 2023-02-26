@@ -1,21 +1,21 @@
 import React from "react";
 import styled from "styled-components";
 import { lighten } from "polished";
-import { ProductThumbnail, Edit, HoverEdit } from "../../assets";
+import { Edit, HoverEdit } from "../../assets";
 import Stars from "../stars";
 import { Link } from "react-router-dom";
 
-function Product({ product, id }) {
+function Product({ title, price, id, review_count, image, point }) {
   return (
     <ProductWrapper>
-      <NavLink to={`/${id}`}>
-        <ProductImg src={ProductThumbnail}></ProductImg>
-        <ProductInfo>슈프림 강아지 미니 하우스</ProductInfo>
-        <ProductInfo>899,000원</ProductInfo>
+      <NavLink to={`/detail/${id}`}>
+        <ProductImg src={image}></ProductImg>
+        <ProductInfo>{title}</ProductInfo>
+        <ProductInfo>{price.toLocaleString()}원</ProductInfo>
       </NavLink>
       <BottomContainer>
-        <Stars point={Math.round(product.point)}></Stars>
-        <Review>(9,999+)</Review>
+        <Stars point={Math.round(point)}></Stars>
+        <Review>({review_count})</Review>
         <NavLink to={`/edit/${id}`}>
           <EditIcon src={Edit}></EditIcon>
         </NavLink>

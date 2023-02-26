@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import Header from "../../components/common/header";
 import Product from "../../components/product";
-import { darken, lighten } from "polished";
+import { lighten } from "polished";
 import { AddImg } from "../../assets";
 import { Link } from "react-router-dom";
 
@@ -10,35 +10,35 @@ function Main() {
   const [products, setProduct] = useState([
     {
       id: 1,
-      price: 8000,
+      price: 899000,
       image: "https://avatars.githubusercontent.com/u/83737498?v=4",
       point: 2.1,
       review_count: 999,
-      title: "제목",
+      title: "슈프림 강아지 미니 하우스",
     },
     {
       id: 2,
-      price: 8000,
+      price: 899000,
       image: "https://avatars.githubusercontent.com/u/83737498?v=4",
       point: 3.2,
       review_count: 999,
-      title: "제목",
+      title: "슈프림 강아지 미니 하우스",
     },
     {
       id: 3,
-      price: 8000,
+      price: 899000,
       image: "https://avatars.githubusercontent.com/u/83737498?v=4",
       point: 4.3,
       review_count: 999,
-      title: "제목",
+      title: "슈프림 강아지 미니 하우스",
     },
     {
       id: 4,
-      price: 8000,
+      price: 899000,
       image: "https://avatars.githubusercontent.com/u/83737498?v=4",
       point: 4.5,
       review_count: 999,
-      title: "제목",
+      title: "슈프림 강아지 미니 하우스",
     },
   ]);
 
@@ -49,8 +49,16 @@ function Main() {
         <CreateProduct to="/create">
           <AddProductBTN src={AddImg} />
         </CreateProduct>
-        {products.map((product, index) => (
-          <Product key={index} id={product.id} product={product}></Product>
+        {products.map((product) => (
+          <Product
+            key={product.id}
+            id={product.id}
+            price={product.price}
+            image={product.image}
+            point={product.point}
+            review_count={product.review_count}
+            title={product.title}
+          ></Product>
         ))}
       </ProductContianer>
     </Frame>
