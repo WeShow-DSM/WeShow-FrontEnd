@@ -43,25 +43,28 @@ function Main() {
   ]);
 
   return (
-    <Frame>
+    <>
       <Header />
-      <ProductContianer>
-        <CreateProduct to="/create">
-          <AddProductBTN src={AddImg} />
-        </CreateProduct>
-        {products.map((product) => (
-          <Product
-            key={product.id}
-            id={product.id}
-            price={product.price}
-            image={product.image}
-            point={product.point}
-            review_count={product.review_count}
-            title={product.title}
-          ></Product>
-        ))}
-      </ProductContianer>
-    </Frame>
+
+      <Frame>
+        <ProductContianer>
+          <CreateProduct to="/create">
+            <img src={AddImg} />
+          </CreateProduct>
+          {products.map((product) => (
+            <Product
+              key={product.id}
+              id={product.id}
+              price={product.price}
+              image={product.image}
+              point={product.point}
+              review_count={product.review_count}
+              title={product.title}
+            ></Product>
+          ))}
+        </ProductContianer>
+      </Frame>
+    </>
   );
 }
 
@@ -76,7 +79,7 @@ const Frame = styled.div`
 const ProductContianer = styled.div`
   width: 1212px;
   display: flex;
-  margin-top: 150px;
+  margin-top: 50px;
   gap: 60px 20px;
   flex-wrap: wrap;
   align-items: center;
@@ -98,11 +101,6 @@ const CreateProduct = styled(Link)`
   }
   &:active {
     background: ${({ theme }) => theme.color.gray200};
-  }
-`;
-
-const AddProductBTN = styled.img`
-  &:hover {
   }
 `;
 

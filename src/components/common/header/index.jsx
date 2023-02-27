@@ -12,8 +12,6 @@ function Header() {
 }
 
 const Frame = styled.header`
-  position: absolute;
-  top: 0%;
   width: 100vw;
   height: 100px;
   display: flex;

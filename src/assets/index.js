@@ -5,7 +5,7 @@ export { default as CloseEye } from "./closeEye.svg";
 export { default as CheckBox } from "./checkBox.svg";
 export { default as CheckedBox } from "./checkedBox.svg";
 export { default as UserImg } from "./user.svg";
-export { default as ProductThumbnail } from "./productImg.png";
+export { default as ProductImg } from "./productImg.png";
 export { default as Star } from "./star.svg";
 export { default as Edit } from "./edit.svg";
 export { default as AddImg } from "./addImg.svg";
