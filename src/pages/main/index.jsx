@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Header from "../../components/common/header";
 import Product from "../../components/product";
 import { lighten } from "polished";
-import { AddImg } from "../../assets";
+import { CreateImg } from "../../assets";
 import { Link } from "react-router-dom";
 
 function Main() {
@@ -49,7 +49,7 @@ function Main() {
       <Frame>
         <ProductContianer>
           <CreateProduct to="/create">
-            <img src={AddImg} />
+            <img src={CreateImg} />
           </CreateProduct>
           {products.map((product) => (
             <Product
