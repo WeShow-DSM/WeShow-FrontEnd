@@ -49,9 +49,9 @@ function Login() {
             )}
 
             {password ? (
-              <PasswordImg onClick={onPassword} src={OpenEye} />
-            ) : (
               <PasswordImg onClick={onPassword} src={CloseEye} />
+            ) : (
+              <PasswordImg onClick={onPassword} src={OpenEye} />
             )}
           </InfoInputWrapper>
 

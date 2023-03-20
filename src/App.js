@@ -7,6 +7,7 @@ import SignUp from "./pages/signup";
 import Main from "./pages/main";
 import Detail from "./pages/detailProduct";
 import CreateProduct from "./pages/createProduct";
+import EditPage from "./pages/editProduct";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path="/main" element={<Main />} />
           <Route path="/create" element={<CreateProduct />} />
           <Route path="/detail/:id" element={<Detail />} />
+          <Route path="/edit/:id" element={<EditPage />} />
         </Routes>
       </BrowserRouter>
     </StyleProvider>

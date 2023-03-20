@@ -90,9 +90,9 @@ function SignUp() {
             )}
 
             {seePassword.pw1 ? (
-              <PasswordImg name="pw1" onClick={onPassword} src={OpenEye} />
-            ) : (
               <PasswordImg name="pw1" onClick={onPassword} src={CloseEye} />
+            ) : (
+              <PasswordImg name="pw1" onClick={onPassword} src={OpenEye} />
             )}
           </InfoInputWrapper>
 
@@ -116,9 +116,9 @@ function SignUp() {
             )}
 
             {seePassword.pw2 ? (
-              <PasswordImg name="pw2" onClick={onPassword} src={OpenEye} />
-            ) : (
               <PasswordImg name="pw2" onClick={onPassword} src={CloseEye} />
+            ) : (
+              <PasswordImg name="pw2" onClick={onPassword} src={OpenEye} />
             )}
           </InfoInputWrapper>
 
