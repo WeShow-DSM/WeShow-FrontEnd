@@ -5,6 +5,22 @@ import Category from "../../components/category";
 import ImgList from "../../components/ImgList";
 
 function EditPage() {
+  const [inputs, setInputs] = useState({
+    name: "문정민머리",
+    price: 1000,
+    category: "식품",
+    content: "앙 기무쮀",
+  });
+  const { name, price, category, content } = inputs;
+
+  const onChangeValue = (e) => {
+    const { name, value } = e.target;
+    setInputs({
+      ...inputs,
+      [name]: value,
+    });
+  };
+
   return (
     <>
       <Header />
@@ -15,7 +31,7 @@ function EditPage() {
           </InfoText>
 
           <InfoInputWrapper>
-            <InfoInput />
+            <InfoInput name="name" value={name} onChange={onChangeValue} />
           </InfoInputWrapper>
         </InfoWrapper>
 
@@ -24,14 +40,23 @@ function EditPage() {
             상품 가격
           </InfoText>
           <InfoInputWrapper>
-            <InfoInput type="number" />
+            <InfoInput
+              type="number"
+              name="price"
+              value={price}
+              onChange={onChangeValue}
+            />
             <InfoText fontSize="20px" interval="20px">
               원
             </InfoText>
           </InfoInputWrapper>
         </InfoWrapper>
 
-        <Category />
+        <Category
+          name="category"
+          category={category}
+          onChangeValue={onChangeValue}
+        />
 
         <InfoText fontSize="30px">상품 대표 이미지</InfoText>
 
@@ -39,8 +64,13 @@ function EditPage() {
 
         <InfoText fontSize="30px">상품 설명</InfoText>
         <ProductTextContainer>
-          <ProductText placeholder="상품 설명을 입력해주세요." />
-          <SubmitBTN>상품 등록하기</SubmitBTN>
+          <ProductText
+            name="content"
+            value={content}
+            onChange={onChangeValue}
+            placeholder="상품 설명을 입력해주세요."
+          />
+          <SubmitBTN>수정 완료</SubmitBTN>
         </ProductTextContainer>
       </Frame>
     </>
