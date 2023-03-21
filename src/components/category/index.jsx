@@ -1,8 +1,8 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import styled, { css } from "styled-components";
 import { CategoryImage } from "../../assets";
 
-function Category() {
+function Category({ onChangeValue, category }) {
   const [categoryList, setCategoryList] = useState([
     "식품",
     "장난감",
@@ -15,11 +15,15 @@ function Category() {
     "배변용품",
     "기타",
   ]);
-  const [category, setCategory] = useState(false);
+
+  const [categories, setCategory] = useState(false);
+  const [categoryAct, setCategoryAct] = useState(category);
   const categoryValue = useRef();
 
   const onCategory = (name) => {
-    categoryValue.current.value = name;
+    setCategoryAct((categoryValue.current.value = name));
+    console.log(categoryValue.current.value);
+    console.log(name);
   };
 
   return (
@@ -28,21 +32,28 @@ function Category() {
         <InfoText>카테고리</InfoText>
         <CategoryWrpper>
           <InfoInputWrapper>
-            <InfoInput ref={categoryValue} />
+            <InfoInput
+              name="category"
+              onChange={onChangeValue}
+              ref={categoryValue}
+              value={categoryAct}
+            />
             <CategoryImg
-              onClick={() => setCategory(!category)}
+              onClick={() => setCategory(!categories)}
               src={CategoryImage}
-              category={category}
+              category={categories}
             ></CategoryImg>
           </InfoInputWrapper>
-          {category && (
+          {categories && (
             <CategoryFrame>
-              {categoryList.map((name) => (
+              {categoryList.map((name, id) => (
                 <Element
                   onClick={() => {
                     onCategory(name);
                   }}
-                  key={name}
+                  name={name}
+                  categoryValue={categoryValue.current.value}
+                  key={id}
                 >
                   {name}
                 </Element>
@@ -124,6 +135,15 @@ const CategoryFrame = styled.div`
 `;
 
 const Element = styled.div`
+  color: ${(props) =>
+    props.name === props.categoryValue
+      ? css`
+          ${({ theme }) => theme.color.point}
+        `
+      : css`
+          ${({ theme }) => theme.color.black}
+        `};
+
   height: 25px;
   display: flex;
   justify-content: center;
