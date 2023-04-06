@@ -8,7 +8,7 @@ import {
   CheckedBox,
   CheckBox,
 } from "../../assets";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import { lighten, darken } from "polished";
 import { Link } from "react-router-dom";
 import LoginApi from "../../api/login";
