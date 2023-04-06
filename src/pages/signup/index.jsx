@@ -3,10 +3,13 @@ import { LoginBGI, OpenEye, CloseEye } from "../../assets";
 import styled, { css } from "styled-components";
 import { lighten, darken } from "polished";
 import { Link } from "react-router-dom";
+import Signup from "../../api/signup";
+import { useNavigate } from "react-router-dom";
 
 function SignUp() {
+  const navigate = useNavigate();
   const [inputs, setInput] = useState({
-    id: "",
+    account_id: "",
     password: "",
     checkPassword: "",
     nickname: "",
@@ -17,7 +20,7 @@ function SignUp() {
   });
   const [equalPW, setEqualPW] = useState(true);
 
-  const { id, password, checkPassword, nickname } = inputs;
+  const { account_id, password, checkPassword, nickname } = inputs;
   const { pw1, pw2 } = seePassword;
 
   useEffect(() => {
@@ -42,12 +45,21 @@ function SignUp() {
 
   const onSignUp = (e) => {
     console.log(inputs);
-    if (!id || !password || !checkPassword || !nickname) {
+    e.preventDefault();
+    if (!account_id || !password || !checkPassword || !nickname) {
       alert("회원정보를 모두 입력해주세요");
       e.preventDefault();
     } else if (!equalPW) {
       alert("비밀번호가 다릅니다.");
       e.preventDefault();
+    } else {
+      Signup(account_id, password, nickname)
+        .then((res) => {
+          console.log(res);
+          alert("회원가입 성공");
+          navigate("/login");
+        })
+        .catch((err) => console.log(err));
     }
   };
 
@@ -64,8 +76,8 @@ function SignUp() {
           <InfoInputWrapper>
             <InfoInput
               onChange={onChange}
-              name="id"
-              value={id}
+              name="account_id"
+              value={account_id}
               placeholder="아이디를 입력해주세요."
             />
           </InfoInputWrapper>
