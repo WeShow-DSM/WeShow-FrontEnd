@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { useCookies } from "react-cookie";
+import { useNavigate } from "react-router-dom";
 import {
   LoginBGI,
   OpenEye,
@@ -9,19 +11,48 @@ import {
 import styled, { css } from "styled-components";
 import { lighten, darken } from "polished";
 import { Link } from "react-router-dom";
+import LoginApi from "../../api/login";
+import axios from "axios";
 
 function Login() {
-  const [password, setPassword] = useState(false);
+  const navigate = useNavigate();
+  const [pwcheck, setPassword] = useState(false);
   const [checked, setCheck] = useState(false);
+  const [cookies, setCookie] = useCookies(["cookie_token"]);
+  const [inputs, setInputs] = useState({
+    account_id: "",
+    password: "",
+  });
+  const { account_id, password } = inputs;
+
+  const onChange = (e) => {
+    const { name, value } = e.target;
+    setInputs({
+      ...inputs,
+      [name]: value,
+    });
+  };
 
   const onCheck = () => {
     setCheck(!checked);
   };
 
   const onPassword = () => {
-    setPassword(!password);
+    setPassword(!pwcheck);
   };
-  console.log(password);
+
+  const onLogin = (e) => {
+    e.preventDefault();
+    LoginApi(account_id, password)
+      .then((res) => {
+        axios.defaults.headers.common.Authorization = `Bearer ${res.data.access_token}`;
+        alert("success", res);
+        setCookie("cookie_token", res.data.access_token);
+        console.log("cookie_token", cookies.cookie_token);
+        navigate("/main");
+      })
+      .catch((err) => alert(err));
+  };
 
   return (
     <Frame>
@@ -34,21 +65,34 @@ function Login() {
 
           <InputInfo fontSize="14px">아이디</InputInfo>
           <InfoInputWrapper>
-            <InfoInput placeholder="아이디를 입력해주세요." />
+            <InfoInput
+              onChange={onChange}
+              placeholder="아이디를 입력해주세요."
+              name="account_id"
+              value={account_id}
+            />
           </InfoInputWrapper>
 
           <InputInfo fontSize="14px">비밀번호</InputInfo>
           <InfoInputWrapper>
-            {password ? (
-              <InfoInput placeholder="비밀번호를 입력해주세요." />
+            {pwcheck ? (
+              <InfoInput
+                onChange={onChange}
+                placeholder="비밀번호를 입력해주세요."
+                name="password"
+                value={password}
+              />
             ) : (
               <InfoInput
                 type="password"
                 placeholder="비밀번호를 입력해주세요."
+                onChange={onChange}
+                name="password"
+                value={password}
               />
             )}
 
-            {password ? (
+            {pwcheck ? (
               <PasswordImg onClick={onPassword} src={CloseEye} />
             ) : (
               <PasswordImg onClick={onPassword} src={OpenEye} />
@@ -64,7 +108,9 @@ function Login() {
             <InputInfo fontSize="16px">아이디 저장</InputInfo>
           </SaveContainer>
 
-          <LogInBox>로그인</LogInBox>
+          <LogInBox to="/main" onClick={onLogin}>
+            로그인
+          </LogInBox>
 
           <SignUpContainer>
             <div>회원이 아니신가요?</div>
@@ -160,7 +206,7 @@ const SaveCheckBox = styled.img`
   cursor: pointer;
 `;
 
-const LogInBox = styled.div`
+const LogInBox = styled(Link)`
   height: 50px;
   margin-top: 40px;
   background: ${({ theme }) => theme.color.point1};
@@ -171,6 +217,7 @@ const LogInBox = styled.div`
   font-size: 18px;
   color: ${({ theme }) => theme.color.white};
   font-family: ${({ theme }) => theme.font.pretendard};
+  text-decoration: none;
   cursor: pointer;
   &:hover {
     background: ${({ theme }) => lighten(0.1, theme.color.point1)};
