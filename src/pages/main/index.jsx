@@ -5,53 +5,29 @@ import Product from "../../components/product";
 import { lighten } from "polished";
 import { CreateImg } from "../../assets";
 import { Link } from "react-router-dom";
+import MainApi from "../../api/main";
 
 function Main() {
-  const [products, setProduct] = useState([
-    {
-      id: 1,
-      price: 899000,
-      image: "https://avatars.githubusercontent.com/u/83737498?v=4",
-      point: 2.1,
-      review_count: 999,
-      title: "슈프림 강아지 미니 하우스",
-    },
-    {
-      id: 2,
-      price: 899000,
-      image: "https://avatars.githubusercontent.com/u/83737498?v=4",
-      point: 3.2,
-      review_count: 999,
-      title: "슈프림 강아지 미니 하우스",
-    },
-    {
-      id: 3,
-      price: 899000,
-      image: "https://avatars.githubusercontent.com/u/83737498?v=4",
-      point: 4.3,
-      review_count: 999,
-      title: "슈프림 강아지 미니 하우스",
-    },
-    {
-      id: 4,
-      price: 899000,
-      image: "https://avatars.githubusercontent.com/u/83737498?v=4",
-      point: 4.5,
-      review_count: 999,
-      title: "슈프림 강아지 미니 하우스",
-    },
-  ]);
+  const [productList, setProduct] = useState([]);
+
+  useEffect(() => {
+    MainApi()
+      .then((res) => {
+        setProduct(res.data.products);
+        console.log(res.data.products);
+      })
+      .catch((err) => console.log(err));
+  }, []);
 
   return (
     <>
       <Header />
-
       <Frame>
         <ProductContianer>
           <CreateProduct to="/create">
             <img src={CreateImg} />
           </CreateProduct>
-          {products.map((product) => (
+          {productList.map((product) => (
             <Product
               key={product.id}
               id={product.id}
